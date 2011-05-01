@@ -1,27 +1,37 @@
 // A simple JSON parser
 
-
-
 function JSON2Struct = JSONParse(JSON)
     true = "%T"
     false = "%F"
     oldnull = null, null = "%Nan" // Backup the null() function and set variable
     
-    json_eg_cat = strcat(JSON);
+    JSON_text_cat = strcat(JSON);
     
     // The following section is required to convert multidimensional 
     // arrays into a rectangular matrix:
-    json_eg_cat_sanitized = json_eg_cat
-    Occurances = length(regexp(json_eg_cat, "/\],\s*\[/"))
+    JSON_text_with_matrix = JSON_text_cat
+    Occurances = length(regexp(JSON_text_cat, "/\],\s*\[/"))
     for i=1:Occurances
-        json_eg_cat_sanitized = strsubst(json_eg_cat_sanitized, "/\],\s*\[/", "]; [", 'r')
+        JSON_text_with_matrix = strsubst(JSON_text_with_matrix, "/\],\s*\[/", "]; [", 'r')
     end
     
+    // The following line replaces all occurances of \" with \quot
+    // since a backslash-quote is the only JSON escape character we 
+    // need to worry about:
+    JSON_text_sanitized = strsubst(JSON_text_with_matrix, "\""", "\quot")
+    
     // The following section replaces JSON delimiters in the sanitized 
-    // JSON string with Scilab delimiters and then evaluates the 
+    // JSON string with Scilab delimiters:
+    JSON2Struct_text = strsubst(strsubst(strsubst(JSON_text_sanitized, '{', "struct("), '}', ")"), ':', ',')
+    
+    // The following line reverts the replacement of \" with \quot:
+    JSON2Struct_text_unQuot = strsubst(JSON2Struct_text, "\quot", "\""""")
+    
+    // The following line evaluates the 
     // resulting Scilab string to form a Scilab structure. 
-    JSON2StructText = strsubst(strsubst(strsubst(json_eg_cat_sanitized, '{', "struct("), '}', ")"), ':', ',')
-    JSON2Struct = evstr(JSON2StructText)
+    JSON2Struct = evstr(JSON2Struct_text_unQuot)
+    
+    // The following line restores the null function:
     null = oldnull
 
 endfunction
