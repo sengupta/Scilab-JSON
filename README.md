@@ -77,6 +77,8 @@ Example 2:
 	 
 	 WonderWidget   
 
+Note that the JSON values of ``true``, ``false`` and ``null`` are represented in Scilab as ``%T``, ``%F`` and ``%Nan``. Since Scilab contains a function called ``null()``, the function will be temporarily redefined by the parser. However, the parser will restore the function after it is done parsing. 
+
 A Note About Matrices
 =====================
 
