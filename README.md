@@ -113,3 +113,8 @@ which when parsed, returns this:
     3.  
     4. 
 
+Other Notes
+===========
+
+* The parser takes into consideration JSON backslash-escapes. Except for the backslash-quote, all other backslash-escapes are left as is as they do not affect Scilab strings. Backslash-quotes are taken into consideration during the parsing process. 
+* This version only has a parser. The next major version will include a JSON encoder as well. Suggestions on this are welcome. 
