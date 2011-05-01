@@ -1,9 +1,47 @@
 Introduction
 ============
 
-JSON (JavaScript Object Notation) is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate. It is based on a subset of the JavaScript Programming Language, [Standard ECMA-262 3rd Edition - December 1999](http://www.ecma-international.org/publications/files/ecma-st/ECMA-262.pdf). ssuming the above JSON text is saved in a text file in the current working directory, the text can be loaded into Scilab and parsed thus: 
+JSON (JavaScript Object Notation) is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate. It is based on a subset of the JavaScript Programming Language, [Standard ECMA-262 3rd Edition - December 1999](http://www.ecma-international.org/publications/files/ecma-st/ECMA-262.pdf). 
 
-    json_eg = mgetl("examples/eg_1.json");
+The JSON format is often used for serializing and transmitting structured data over a network connection. It is primarily used to transmit data between a server and web application, serving as an alternative to XML.
+
+For more information, please read: 
+
+[http://json.org/](http://json.org/)  
+[http://en.wikipedia.org/wiki/Json](http://en.wikipedia.org/wiki/Json)
+
+Structures: 
+===========
+
+Since JSON supports key-value objects, the parser interprets the key-value JSON objects as Scilab ``struct`` objects. 
+
+(Type ``help struct`` in Scilab for more information on Scilab structures.)
+
+Consider the following example:
+
+	{
+	  "orderID": 12345,
+	  "shopperName": "John Smith",
+	  "shopperEmail": "johnsmith@example.com",
+	  "contents": [
+		{
+		  "productID": 34,
+		  "productName": "SuperWidget",
+		  "quantity": 1
+		},
+		{
+		  "productID": 56,
+		  "productName": "WonderWidget",
+		  "quantity": 3
+		}
+	  ],
+	  "orderCompleted": true
+	}
+
+
+Assuming the above JSON text is saved in a text file in the current working directory, the text can be loaded into Scilab and parsed thus: 
+
+    json_eg = mgetl("eg_1.json");
     mystruct = JSONParse(json_eg)
 
 This returns the following Scilab structure:
@@ -27,24 +65,17 @@ Example 1:
 
 Example 2: 
 
-otity": ome
-
-ns  =
-
-The JSON format is often used for serializing and transmitting structured data over a network connection. It is primarily used to transmit data between a server and web application, serving as an alternative to XML.
-
-For more information, please read: 
-
-[htns(1)
-tp://json.org/](http://json.org/)  
-uperWidget   
-
-
-Struns(2)
-ctures: 
-===========
-
-nderWidget   
+	-->mystruct.contents.productName
+	 ans  =
+	 
+	 
+		   ans(1)
+	 
+	 SuperWidget   
+	 
+		   ans(2)
+	 
+	 WonderWidget   
 
 A Note About Matrices
 =====================
@@ -79,22 +110,4 @@ which when parsed, returns this:
     2.  
     3.  
     4. 
-
-
-Since JSON supports key-value objects, the parser interprets the key-value JSON objects as Scilab ``struct`` objects. 
-
-(Type ``help struct`` in Scilab for more information on Scilab structures.)
-
-Codside
-
-
-pperName": "John Smith",
-
-pperEmail": "johnsmith@example.com",
-
-nt
-
-ntity": 3
-
-mpleted": true
 
