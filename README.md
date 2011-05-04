@@ -118,3 +118,7 @@ Other Notes
 
 * The parser takes into consideration JSON backslash-escapes. Except for the backslash-quote, all other backslash-escapes are left as is as they do not affect Scilab strings. Backslash-quotes are taken into consideration during the parsing process. 
 * This version only has a parser. The next major version will include a JSON encoder as well. Suggestions on this are welcome. 
+
+---- 
+
+This project is being carried out at [Indian Institute of Technology Bombay](http://www.iitb.ac.in) and funded by the [National Mission on Education through ICT, MHRD, Government of India](http://www.ircc.iitb.ac.in/IRCC-Webpage/NME_ICT.html).
