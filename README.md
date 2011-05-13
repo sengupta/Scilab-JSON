@@ -10,6 +10,19 @@ For more information, please read:
 [http://json.org/](http://json.org/)  
 [http://en.wikipedia.org/wiki/Json](http://en.wikipedia.org/wiki/Json)
 
+Installation: 
+=============
+
+This toolbox can be installed directly from Scilab using the ATOMS package manager. 
+In Scilab, issue the following command to update your Scilab package list: 
+
+    atomsSystemUpdate
+
+Issue the following command to install this toolbox: 
+
+    atomsInstall json
+
+
 Structures: 
 ===========
 
